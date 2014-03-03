@@ -5,4 +5,5 @@ _ = TranslationStringFactory('todopyramid')
 
 @view_config(route_name='index', renderer='todopyramid:templates/index.jinja2')
 def index(request):
-    return {}
+    db = request.db
+    return {'cursor': db}
