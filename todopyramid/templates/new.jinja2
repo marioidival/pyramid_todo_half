@@ -1,0 +1,36 @@
+{% extends 'templates/base.jinja2' %}
+
+{% block content %}
+  <div class='span8 offset2'>
+    <form action='{% if not todo %}/new{% else %}{{ request.route_url("edit", todo_id=todo._id) }}{% endif %}' method='POST' class='form-horizontal'>
+
+      <div class='control-group'>
+        <label class='control-label' for='idTodo'>Todo Name</label>
+        <div class='controls'>
+          <input type='text' value='{{ todo.get("todo_name", "") }}' class-'input-small' id='idTodo' name='todo_name' />
+        </div>
+      </div>
+
+      <div class='control-group'>
+        <label class='control-label' for='idDescription'>Description</label>
+        <div class='controls'>
+          <textarea name='description' id='idDescription'>
+            {{ todo.get('description', '') }}
+          </textarea>
+        </div>
+      </div>
+
+      <div class='control-group'>
+        <div class='controls'>
+          {#
+          <a href='/' class='btn'>Back</a>
+          #}
+          <a href='{{ request.route_url("index") }}' class='btn'>Back</a>
+          <button name='submit' type='submit' class='btn btn-primary'>Send</a>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+{% endblock %}

@@ -1,10 +1,52 @@
 {% extends 'templates/base.jinja2' %}
 
 {% block content %}
-
-  <div class='alert alert-success'>
-    From Index
+  <div class='row'>
+    <div class='span8 offset2'>
+      {% if todolist %}
+      <div class='pull-right'>
+        <a href='{{ request.route_url("new") }}' class='btn btn-mini btn-primary'>New Todo</a> 
+        {# <a href='/new' class='btn btn-mini btn-primary'>New Todo</a> #}
+      </div>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>To Do</th>
+            <th>Description</th>
+            <th>Check</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for todo in todolist %}
+        <tr>
+          <td>{{ todo.todo_name }}</td>
+          <td>{{ todo.description }}</td>
+          <td>
+            <input type='checkbox' name='done' {%if todo.done %}checked{% endif %} />
+          </td>
+          <td>
+            {#
+            <a href='/delete/{{ todo._id }}' class='btn btn-mini btn-danger'>Delete</a>
+            <a href='/edit/{{ todo._id }}' class='btn btn-mini btn-info'>Edit</a>
+            #}
+            <a href='{{ request.route_url("delete", todo_id=todo._id) }}' class='btn btn-mini btn-danger'>Delete</a>
+            <a href='{{ request.route_url("edit", todo_id=todo._id) }}' class='btn btn-mini btn-info'>Edit</a>
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <div class='alert alert-info'>
+        Create an new todolist
+        <div class='pull-right'>
+          <a href='{{ request.route_url("new") }}' class='btn btn-mini btn-primary'>New Todo</a> 
+          {# <a href='/new' class='btn btn-mini btn-primary'>New Todo</a> #}
+        </div>
+      </div>
+      {% endif %}
+    </div>
   </div>
-  DB Name is: {{ cursor.name }}
 
 {% endblock %}
