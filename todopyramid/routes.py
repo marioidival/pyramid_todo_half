@@ -1,5 +1,5 @@
 def includeme(config):
 
-  config.add_route('index', '/')
+    config.add_route('index', '/')
 
-  config.scan('todopyramid.views')
+    config.scan('todopyramid.views')
