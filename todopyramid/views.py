@@ -31,7 +31,9 @@ def new(request):
 
 @view_config(route_name='edit', renderer='todopyramid:templates/new.jinja2')
 def edit(request):
-
+    ''' request.matchdict get params passed by routes
+    edit/{todo_id}
+    '''
     db = request.db
     todo_id = request.matchdict.get('todo_id')
 
@@ -48,7 +50,9 @@ def edit(request):
 
 @view_config(route_name='delete', renderer='json')
 def delete(request):
-
+    ''' request.matchdict get params passed by routes
+    delete/{todo_id}
+    '''
     db = request.db
     todo_id = request.matchdict.get('todo_id')
 

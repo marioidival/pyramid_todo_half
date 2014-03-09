@@ -34,7 +34,7 @@ def main(global_config, **settings):
     config.add_subscriber(add_db_to_request, NewRequest)
     config.add_translation_dirs('locale/')
     config.include('pyramid_jinja2')
-    # change extension of jinja2
+    # change jinja2 for html
     #config.add_renderer('.html', renderer_factory)
 
     config.add_static_view('static', 'static')
