@@ -24,7 +24,7 @@ def new(request):
     if request.POST:
         form = dict(request.params.items())
         db.todolist.insert(form)
-        return HTTPFound(index)
+        return HTTPFound('/')
         
     return {'todo': todo}
 
@@ -39,7 +39,7 @@ def edit(request):
         form = dict(request.params.items())
         db.todolist.update({'_id': ObjectId(todo_id)},
                 {'$set': form}, upsert=True)
-        return HTTPFound(index)
+        return HTTPFound('/')
 
     if todo_id:
         todo = db.todolist.find_one({'_id': ObjectId(todo_id)})
@@ -53,4 +53,4 @@ def delete(request):
     todo_id = request.matchdict.get('todo_id')
 
     db.todolist.remove({'_id': ObjectId(todo_id)})
-    return HTTPFound(index)
+    return HTTPFound('/')
