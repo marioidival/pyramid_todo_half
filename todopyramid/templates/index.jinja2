@@ -13,7 +13,6 @@
           <tr>
             <th>To Do</th>
             <th>Description</th>
-            <th>Check</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -22,9 +21,6 @@
         <tr>
           <td>{{ todo.todo_name }}</td>
           <td>{{ todo.description }}</td>
-          <td>
-            <input type='checkbox' name='done' {%if todo.done %}checked{% endif %} />
-          </td>
           <td>
             {#
             <a href='/delete/{{ todo._id }}' class='btn btn-mini btn-danger'>Delete</a>
