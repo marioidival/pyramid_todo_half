@@ -9,8 +9,7 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 requires=[
     'pyramid>=1.0.2',
     'pyramid_jinja2',
-    'pymongo==2.5'
-    'bson==0.3.3',
+    'pymongo==2.5',
 ]
 
 setup(name='todopyramid',
