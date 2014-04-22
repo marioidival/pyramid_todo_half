@@ -6,6 +6,7 @@ from bson import ObjectId
 
 _ = TranslationStringFactory('todopyramid')
 
+
 @view_config(route_name='index', renderer='todopyramid:templates/index.jinja2')
 def index(request):
     '''Return all TodoList'''
@@ -25,7 +26,7 @@ def new(request):
         form = dict(request.params.items())
         db.todolist.insert(form)
         return HTTPFound('/')
-        
+
     return {'todo': todo}
 
 
@@ -40,7 +41,7 @@ def edit(request):
     if request.POST:
         form = dict(request.params.items())
         db.todolist.update({'_id': ObjectId(todo_id)},
-                {'$set': form}, upsert=True)
+                           {'$set': form}, upsert=True)
         return HTTPFound('/')
 
     if todo_id:
