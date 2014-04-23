@@ -26,3 +26,19 @@ class ViewTests(unittest.TestCase):
         from todopyramid.views import new
         resp = new(self.request)
         self.assertEqual(resp['todo'], {})
+
+
+class FunctionalTest(unittest.TestCase):
+    def setUp(self):
+        from pyramid.paster import bootstrap
+        app = bootstrap('development.ini')
+        from webtest import TestApp
+        self.client = TestApp(app['app'])
+
+    def test_index_status(self):
+        resp = self.client.get('/')
+        self.assertEqual(resp.status_int, 200)
+
+    def test_new_status(self):
+        resp = self.client.get('/new')
+        self.assertEqual(resp.status_int, 200)
