@@ -1,32 +1,34 @@
 ##Half Todo Pyramid Application
 
 
-This application show for you how to make an todo list. Why 'half'? Because after you read all application, you should be able for terminate it.
+This application will show you how to make a todo list. 
 
-First clone it:
+Why 'half'? Because after you read all the code, you should be able to finish it.
+
+First, clone it:
 
     git clone git@github.com:marioidival/pyramid_todo_half.git
  
    
-Install dependencies
+Install dependencies:
 
     cd pyramid_todo_half
     python setup.py develop
     
     
-Run server
+Run server:
 
     pserve development.ini --reload
     
-_If you alter anything in python code, he reload the server for you_
+_If you alter anything in python code, pserve will reload the server for you_
 
 
-So, for read the code:
+So, start reading the code:
 
     todopyramid/__init__.py
-    todopyramid.routes.py
+    todopyramid/routes.py
     todopyramid/views.py
 
 
 
-Look [Pyramid Page](http://docs.pylonsproject.org/en/latest/) for more details.
+Look on [Pyramid Documentation](http://docs.pylonsproject.org/en/latest/) for more details.
