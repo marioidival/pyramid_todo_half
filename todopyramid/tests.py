@@ -10,7 +10,7 @@ class ViewTests(unittest.TestCase):
 
     def setUp(self):
         self.request = testing.DummyRequest()
-        self.db = MongoClient().todopyramid
+        self.db = MongoClient().test_todopyramid
         self.request.db = self.db
         testing.setUp(request=self.request)
 
