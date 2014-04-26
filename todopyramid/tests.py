@@ -6,8 +6,7 @@ from pymongo import MongoClient
 _ = TranslationStringFactory('todopyramid')
 
 
-class ViewTests(unittest.TestCase):
-
+class BaseCaseTest(unittest.TestCase):
     def setUp(self):
         self.request = testing.DummyRequest()
         self.db = MongoClient().test_todopyramid
@@ -16,6 +15,19 @@ class ViewTests(unittest.TestCase):
 
     def tearDown(self):
         testing.tearDown()
+
+class ViewTests(BaseCaseTest):
+
+    def setUp(self):
+        BaseCaseTest.setUp(self)
+
+    def make_one(self):
+        todo = {'todo_name': 'Test', 'description': 'teste'}
+        return self.db.todolist.insert(todo)
+
+    def tearDown(self):
+        BaseCaseTest.tearDown(self)
+        self.db.todolist.remove()
 
     def test_my_index(self):
         from todopyramid.views import index
@@ -28,12 +40,18 @@ class ViewTests(unittest.TestCase):
         self.assertEqual(resp['todo'], {})
 
 
-class FunctionalTest(unittest.TestCase):
+class FunctionalTest(BaseCaseTest):
     def setUp(self):
         from pyramid.paster import bootstrap
         app = bootstrap('development.ini')
         from webtest import TestApp
-        self.client = TestApp(app['app'])
+        self.client = TestApp(app)
+        BaseCaseTest.setUp(self)
+
+    def tearDown(self):
+        self.db.todolist.remove()
+        testing.tearDown()
+
 
     def test_index_status(self):
         resp = self.client.get('/')
